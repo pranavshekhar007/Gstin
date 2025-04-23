@@ -1,8 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const { PrismaClient } = require("../generated/prisma");
-const serverless = require("serverless-http"); 
+const { PrismaClient } = require("./generated/prisma");
 
 const app = express();
 const prisma = new PrismaClient();
@@ -38,6 +37,6 @@ app.get("/api/search/pan/:pan", async (req, res) => {
 const PORT = process.env.PORT || 8000;
 app.get("/", (req, res) => res.send(`Server listing on port ${PORT}`));
 
-// export the serverless function
-module.exports = app;
-module.exports.handler = serverless(app);
+app.listen(PORT, () =>
+  console.log(`Server running on ${PORT}`)
+);
