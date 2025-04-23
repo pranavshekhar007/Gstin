@@ -34,4 +34,7 @@ app.get("/api/search/pan/:pan", async (req, res) => {
   res.json(user || { message: "No user found with this PAN" });
 });
 
+const PORT = process.env.PORT || 8000;
+app.get("/", (req, res) => res.send(`Server listing on port ${PORT}`));
+
 app.listen(8000, () => console.log("Server running on port 8000"));
